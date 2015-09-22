@@ -120,7 +120,7 @@ void print_data_size()
 */
 int main()
 {
-    double a, b, c, diskriminant;
+    double a, b, c, discriminant;
     double x1, x2;
 
     // вызов ранее объявленной функции, круглые скобки - обязательны.
@@ -148,9 +148,9 @@ int main()
 
     discriminant = calculate_discriminant(a, b, c);
 
-    if ( diskriminant > 0 ) {
-        x1 = ( -b + sqrt( diskriminant ) ) / 2 * c;
-        x2 = ( -b - sqrt( diskriminant ) ) / 2 * c;
+    if ( discriminant > 0 ) {
+        x1 = ( -b + sqrt( discriminant ) ) / 2 * c;
+        x2 = ( -b - sqrt( discriminant ) ) / 2 * c;
         
         printf("x1 is: %lf\n", x1);
         printf("x2 is: %lf\n", x2);
