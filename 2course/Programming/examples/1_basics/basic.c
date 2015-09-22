@@ -107,7 +107,7 @@ void print_data_size()
     printf("Size of long double: %d\n", sizeof(long double));
 
     // Пример обращения к глобальной переменной number_PI, определённой выше
-    printf("Global variable PI is %lf", number_PI);
+    printf("Global variable PI is %lf\n", number_PI);
     
     // Можно выйти из функции и указанием явного return без возращаемого значения. Обязательным не является и применяется в случаях сложного ветвления логики выполнения. Потому и закомментирована. 
     // return;
@@ -155,7 +155,7 @@ int main()
         printf("x1 is: %lf\n", x1);
         printf("x2 is: %lf\n", x2);
     } else {
-        printf("The equation has no real roots");
+        printf("The equation has no real roots\n");
     }
     
     return 0;
