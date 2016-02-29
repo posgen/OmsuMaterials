@@ -1,40 +1,40 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <iostream>
+#include <ctime>
 
 #include "libising2d_equil_data.h"
+
+using namespace std;
+using namespace libising2d;
 
 int** allocate_array2D(unsigned int size)
 {
   unsigned int i = 0;
   int **arr;
 
-  arr = (int **) calloc(size, sizeof(int **));
+  arr = new int*[size];
   for (; i < size; i++)
-    arr[i] = (int *) calloc(size, sizeof(int *));
+    arr[i] = new int[size];
 
   return arr;
 }
 
 void free_array2D(int ***arr, unsigned int size)
 {
-  int i = 0;
+  for (unsigned int i = 0; i < size; i++)
+    delete[] (*arr)[i];
 
-  for (; i < size; i++)
-    free( (*arr)[i] );
-
-  free(*arr);
+  delete[] *arr;
 }
 
 int main()
 {
-    unsigned int lin_size, rel_time;
-    int **spin_array, i, j;
+    unsigned int lin_size, rel_time, i, j;
+    int **spin_array;
 
     Ising2DSystem systm;
 
-    printf("Enter linear size of system: ");
-    scanf("%d", &lin_size);
+    cout << "Enter linear size of system: ";
+    cin >> lin_size;
 
     spin_array = allocate_array2D(lin_size);
     for (i = 0; i < lin_size; i++) {
@@ -47,9 +47,11 @@ int main()
     systm.spins_number = lin_size * lin_size;
     systm.spin_structure = spin_array;
 
-    rel_time = get_relaxation_time(systm, 3.5, time(NULL));
-    printf("The relaxation time is: %d", rel_time);
+    set_generator_seed( (unsigned long long) time(NULL));
+    rel_time = get_relaxation_time(systm, 3.5);
+    cout << "The relaxation time is: " << rel_time << endl;
 
     free_array2D(&spin_array, lin_size);
+
     return 0;
 }
