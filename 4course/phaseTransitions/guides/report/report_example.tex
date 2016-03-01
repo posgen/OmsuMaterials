@@ -1,0 +1,64 @@
+% Преамбула
+\documentclass[12pt,a4paper]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[russian]{babel}
+\usepackage{color}
+\usepackage{cite}
+\usepackage{bm}
+
+%Параметры страницы
+\textwidth 17cm
+\textheight 23cm
+\oddsidemargin 0cm
+\topmargin -1cm
+\def\Year{\expandafter\YEAR\the\year}
+\def\YEAR#1#2#3#4{#3#4}
+\definecolor{grey}{gray}{0.3}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+{\large\bf Министерство образования и науки \linebreak российской федерации\\[14pt]
+    Государственное образовательное учреждение
+    высшего профессионального образования \linebreak
+    Омский государственный университет им.~Ф.М.~Достоевского\\[1cm]
+    Кафедра теоретической физики
+    }\\[4.2cm]
+{\large \textbf{Отчет по лабораторной работе}}\\[1cm]
+{\Large\bf Компьютерное моделирование равновесных характеристик 2-мерной модели Изинга}\\[3cm]
+\end{center}
+\hspace*{9cm}{\bf Работу выполнили:}\\
+\hspace*{12cm}{\bf И.О.~Фамилия}\\[2pt]
+\hspace*{12cm}{\bf <И.О.~Фамилия>}\\[1.6cm]
+
+\begin{center}
+{\bf Омск -- 20\Year}
+\end{center}
+\end{titlepage}
+
+\newpage
+\section{Постановка задачи}
+Не стесняемся написать полную формулировку проводимой работы из пособия.
+
+
+\section{Описание модели исследования и условий моделирования}
+Обозначается общая модель: гамильтониан, ее представление - 2D или 3D
+решётка, граничные условия.
+
+Приводятся формулы для вычисления основных характеристик. Например: в ходе расчетов
+вычислялась намагниченность системы изинговских спинов по формуле
+\begin{equation}
+m = \frac{1}{N} \sum_{i = 1}^{N} S_i
+\end{equation}
+
+\section{Результаты работы}
+Таблицы, рисунки, графики - все приветствуется.
+
+
+\section{Выводы}
+Резюме того, что стало понятно из проведенной лабораторной работы
+
+\end{document}
