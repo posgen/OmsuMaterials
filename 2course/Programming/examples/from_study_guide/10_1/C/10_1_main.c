@@ -1,9 +1,11 @@
 /*
+    Версия для языка C.
+
     Упорядочить по длине строки, читаемые из стандартного входного потока.
     Вывести их на печать в порядке увеличения длины.
     Для решения задачи использовать односвязный динамический список.
 
-    Если кратко, то односвязный списов представляет собой набор элементов, в котором у каждого из них содержится ссылка на следующий. 
+    Если кратко, то односвязный списов представляет собой набор элементов, в котором у каждого из них содержится ссылка на следующий.
     Графически можно представить в следующем виде:
 
         [value1] -> [value2] -> [value3] -> [value4] -> [value5] -> ...
@@ -19,7 +21,7 @@
 
     Вставка узлов зависит от требуемого действия и может быть реализована в любое место списка.
 
-    В C++ (да и С) узел списка удобно представлять в виде структуры, содержащей указатель на саму себя:
+    В C узел списка удобно представлять в виде структуры, содержащей указатель на саму себя:
         struct Node {
             // тут объявляются поля для данных
 
@@ -28,47 +30,46 @@
 
 
     *Отличие от пособия*:
-        -> используется C++ вместо C
         -> функции для работы со списком выделены в отдельную библиотеку
 
     Скомпилировать можно либо путём добавления всех файлов в проект CodeBlocks.
-    Либо используя окно командной строки (cmd.exe в Windows).
+    Либо используя окно командной строки (cmd.exe в Windows, Terminal - в Linux дистрибутивах).
 
     Для второго способа необходимо:
         - открыть командную строку;
         - узнать полный путь к компилятору (например: "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-g++.exe" - при дефолтной установке CodeBlocks)
-        - перейти к директорию с исходными файлами
+        - перейти к директории с исходными файлами
         - ввести команду вида:
-            "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-g++.exe" -std=c++11 -o 10_1.ex 10_1_main.cpp 10_1_listlib.cpp
-            
+            "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-gcc.exe" -o 10_1.ex 10_1_main.c 10_1_listlib.c
+
             * в Linux дистрибутивах проще:
-            g++ -std=c++11 -o 10_1.ex 10_1_main.cpp 10_1_listlib.cpp
+            gcc -o 10_1.ex 10_1_main.c 10_1_listlib.c
 */
 
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "10_1_listlib.h"
-
-using namespace std;
-using namespace listlib;
+#include "10_1_listclib.h"
 
 
 int main()
 {
-    Cell *cell_list{nullptr}, *new_cell;
+    struct Cell *cell_list = NULL, *new_cell;
 
-    cout << "Enter lines to collect (empty line to exit)" << endl;
+    puts("Enter lines to collect (empty line to exit)");
 
-    while (true) {
-        new_cell = listlib::create_cell();
-        if (new_cell == nullptr)
+    while ( 1 ) {
+        new_cell = create_cell();
+        if (new_cell == NULL) {
             break;
+        }
 
         cell_list = insert_to_list(cell_list, new_cell);
     }
 
-    cout << "Printing tree:" << endl;
+    puts("Printing tree:");
     print_list(cell_list);
     clear_list(cell_list);
+
     return 0;
 }
