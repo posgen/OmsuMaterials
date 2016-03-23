@@ -4,11 +4,11 @@
 
 Потенциально полезные файлы находятся выше в директории "2course/Programming/".
 
-В https://github.com/posgen/OmsuMaterials/examples/ - приводятся программы с подробными, по возможности, комментариями - что да как. Смотреть на пронумерованные директории.
+В https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/examples/ - приводятся программы с подробными, по возможности, комментариями - что да как. Смотреть на пронумерованные директории.
 
-В https://github.com/posgen/OmsuMaterials/examples/from_study_guide/ - все программы из методического пособия в рабочем виде.
+В https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/examples/from_study_guide/ - все программы из методического пособия в рабочем виде.
 
-В https://github.com/posgen/OmsuMaterials/docs/ - размещаются краткие описания по компиляции и запуску программ, а также справочные материалы по C/C++
+В https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/docs/ - размещаются краткие описания по компиляции и запуску программ, а также справочные материалы по C/C++
 
 Файлы будут периодически обновляться
 
