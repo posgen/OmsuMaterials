@@ -24,9 +24,10 @@ namespace libising2d {
       long double m_cumulant, m2_cumulant, e_cumulant, e2_cumulant;
     };
 
-    size_t get_relaxation_time(const Ising2DSystem, const double);
-    void set_generator_seed(const unsigned long long);
-    Cumulant run_equilibrium_research(const Ising2DConfiguration, const Ising2DSystem);
+    size_t get_relaxation_time(const Ising2DSystem systm, const double temperature);
+    size_t get_relaxation_for_order_init_state(const Ising2DSystem systm, const double temperature);
+    void set_generator_seed(const unsigned long long seed);
+    Cumulant run_equilibrium_research(const Ising2DConfiguration systm_config, const Ising2DSystem systm);
 };
 
 #endif
