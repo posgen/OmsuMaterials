@@ -17,7 +17,8 @@ double sum_or_substract(double number1, double number2)
         В языке С нет отдельного типа для логических операций.
         Любое значение считается истинным за исключением нуля (и значений, которые могут быть приведены к нулю).
 
-        В языке определены следующие операторы сравнения: ==, >, <, >=, <=, !=. (равенство, больше, меньше, больше или равно, меньше или равно, неравенство). Например, a != b, num1 == num2, num1 >= num2. Данные операторы возращают 1, если условие выполняется и 0 в противоположном случае.
+        В языке определены следующие операторы сравнения: ==, >, <, >=, <=, !=. (равенство, больше, меньше, больше или равно, меньше или равно, неравенство). 
+        Например, a != b, num1 == num2, num1 >= num2. Данные операторы возращают 1, если условие выполняется и 0 в противоположном случае.
 
         В логических выражениях условия могут комбинироваться с помощью двух логических операторов:
             && - логическое и;
@@ -68,8 +69,15 @@ int main()
     scanf("%d", &number);
 
     // несколько разных иструкций можно в if-выражении записать и так:
-    if ( number < 0 ) { printf("Number must be positive"); return 0; }
-    if ( number <= 3 ) { printf("Number is prime"); return 0; }
+    if ( number < 0 ) {
+        printf("Number must be positive");
+        return 0;
+    }
+    
+    if ( number <= 3 ) {
+        printf("Number is prime");
+        return 0;
+    }
 
 
     /*
@@ -116,7 +124,9 @@ int main()
             break;
         }
     }
-    if ( is_prime ) { printf("Number %d is prime\n\n", number); }
+    if ( is_prime ) { 
+        printf("Number %d is prime\n\n", number);
+    }
 
     /*
         Цикл while:
@@ -143,7 +153,10 @@ int main()
         }
         denominator++;
     }
-    if ( is_prime ) { printf("Number %d is prime\n\n", number); }
+
+    if ( is_prime ) {
+        printf("Number %d is prime\n\n", number);
+    }
 
 
     /*
@@ -185,7 +198,10 @@ int main()
         }
         denominator++;
     } while ( denominator <= (int) sqrt(number) );
-    if ( is_prime ) { printf("Number %d is prime\n\n", number); }
+    
+    if ( is_prime ) {
+        printf("Number %d is prime\n\n", number);
+    }
 
     return 0;
 }
