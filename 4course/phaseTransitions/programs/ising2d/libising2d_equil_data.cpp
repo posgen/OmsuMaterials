@@ -28,10 +28,10 @@ namespace libising2d {
       for (size_t mc_counter = 0; mc_counter < cfg.mc_collected_steps; mc_counter++) {
         do_step(systm.spin_structure, w_array, systm.linear_size, systm.spins_number, energy, magn);
 
-        results.m_cumulant += (long double) magn;
-        results.m2_cumulant += (long double) magn * magn;
-        results.e_cumulant += (long double) energy;
-        results.e2_cumulant += (long double) energy * energy;
+        results.m_cumulant  += static_cast<long double>(magn);
+        results.m2_cumulant += ( static_cast<long double>(magn) * magn ) / systm.spins_number;
+        results.e_cumulant  += static_cast<long double>(energy);
+        results.e2_cumulant += ( static_cast<long double>(energy) * energy ) / systm.spins_number;
       }
 
       return results;

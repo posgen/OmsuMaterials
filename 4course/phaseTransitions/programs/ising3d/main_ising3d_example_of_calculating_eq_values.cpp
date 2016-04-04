@@ -1,37 +1,47 @@
 #include <iostream>
 #include <ctime>
 
-#include "libising2d_equil_data.h"
+#include "libising3d_equil_data.h"
 
 using namespace std;
-using namespace libising2d;
+using namespace libising3d;
 
-int** allocate_array2D(size_t size)
+int8_t*** allocate_array3D(size_t size)
 {
-  size_t i = 0;
-  int **arr;
+    int8_t ***arr;
 
-  arr = new int*[size];
-  for (; i < size; i++)
-    arr[i] = new int[size];
+    arr = new int8_t**[size];
+    for (size_t i = 0; i < size; ++i) {
+        arr[i] = new int8_t*[size];
 
-  return arr;
+        for (size_t j = 0; j < size; ++j) {
+            arr[i][j] = new int8_t[size];
+        }
+    }
+
+    return arr;
 }
 
-void free_array2D(int ***arr, size_t size)
+void delete_array3D(int8_t ****arr, unsigned int size)
 {
-  for (size_t i = 0; i < size; i++)
-    delete[] (*arr)[i];
+    for (size_t i = 0; i < size; ++i) {
+        for (size_t j = 0; j < size; ++j) {
+            delete[] (*arr)[i][j];
+        }
 
-  delete[] *arr;
+        delete[] (*arr)[i];
+    }
+
+    delete[] *arr;
 }
 
-void set_low_temperature_initial_state(int **arr, size_t size)
+void set_low_temperature_initial_state(int8_t ***arr, size_t size)
 {
-    size_t i = 0, j = 0;
-    for (; i < size; i++) {
-        for (; j < size; j++) {
-            arr[i][j] = 1;
+    for (size_t i = 0; i < size; ++i) {
+        for (size_t j = 0; j < size; ++j) {
+            for (size_t k = 0; k < size; ++k) {
+                arr[i][j][k] = 1;
+            }
         }
     }
 }
@@ -39,10 +49,10 @@ void set_low_temperature_initial_state(int **arr, size_t size)
 int main()
 {
     size_t lin_size;
-    int **spin_array;
+    int8_t ***spin_array;
 
-    Ising2DSystem systm;
-    Ising2DConfiguration config;
+    Ising3DSystem systm;
+    IsingConfiguration config;
 
     cout << "Enter linear size of system: ";
     cin >> lin_size;
@@ -53,23 +63,23 @@ int main()
     cout << "Enter MC steps for collecting data: ";
     cin >> config.mc_collected_steps;
 
-    spin_array = allocate_array2D(lin_size);
+    spin_array = allocate_array3D(lin_size);
     set_low_temperature_initial_state(spin_array, lin_size);
 
     systm.linear_size = lin_size;
-    systm.spins_number = lin_size * lin_size;
+    systm.spins_number = lin_size * lin_size * lin_size;
     systm.spin_structure = spin_array;
 
     set_generator_seed( (unsigned long long) time(NULL));
 
     Cumulant cum_values;
     // нормировка средних значений на один спин и количество MC шагов на сбор величин
-    long double normz_coeff = 1.0 / (config.mc_collected_steps * systm.spins_number);
+    long double normz_coeff = 1.0 / static_cast<long double>( config.mc_collected_steps * systm.spins_number );
     long double av_magn, av_magn2, av_e, av_e2, xi, ct;
 
 
     cout << "T \t L \t m(T) \t X(T) \t e(T) \t C(T)" << endl;
-    for (config.temperature = 3.0; config.temperature > 0.1; config.temperature -= 0.1) {
+    for (config.temperature = 5.5; config.temperature > 3.5; config.temperature -= 0.1) {
         cum_values = run_equilibrium_research(config, systm);
 
         av_magn  = cum_values.m_cumulant * normz_coeff;
@@ -84,7 +94,6 @@ int main()
              << '\t' << xi << '\t' << av_e << '\t' << ct << endl;
     }
 
-    free_array2D(&spin_array, lin_size);
-
+    delete_array3D(&spin_array, lin_size);
     return 0;
 }
