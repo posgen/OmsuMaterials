@@ -18,6 +18,7 @@ namespace libising3d {
       size_t mc_collected_steps;
       size_t mc_excluded_steps;
       double temperature;
+      double h_field;
     };
 
     /*
@@ -46,7 +47,7 @@ namespace libising3d {
         Пример расчёта релаксационного времени через экспонециальное спадание намагниченности.
         Применимо только для удельной начальной намагниченности m0 = 1 и температуры T выше критической Tc.
     */
-    size_t get_relaxation_for_order_init_state(const Ising3DSystem systm, const double temperature);
+    size_t get_relaxation_for_order_init_state(const IsingConfiguration& cfg, const Ising3DSystem& systm);
 
     /*
         Функция для инициализации генератора псевдо случайных чисел, используемого в алгоритме Метрополиса
@@ -56,7 +57,7 @@ namespace libising3d {
     /*
         Функция для проведения исследования и получения кумулятивных значений.
     */
-    Cumulant run_equilibrium_research(const IsingConfiguration systm_config, const Ising3DSystem systm);
+    Cumulant run_equilibrium_research(const IsingConfiguration& cfg, const Ising3DSystem& systm);
 };
 
 #endif

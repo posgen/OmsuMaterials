@@ -1,25 +1,35 @@
 #include "libising3d_equil_data.h"
 
-#define PROBABILITIES_SIZE 7
-
 namespace libising3d {
 
-    void prepare_research(double *, const double, const Ising3DSystem, int &, int &);
+    #define PROBABILITIES_SIZE 7
+    #define RELAXATION_STOP_MCSTEP 10000
+    #define FLOAT_ACCURACY 0.00000001
+
+    struct {
+        double positive_dH;
+        double negative_dH;
+        double h;
+    } w_field_part;
+
+    void prepare_research(double *, const IsingConfiguration&, const Ising3DSystem&, int &, int &);
     void do_step(int8_t ***spins, const double *, const size_t, const size_t, int &, int &);
 
     size_t next_spin(const size_t, const size_t);
     size_t prev_spin(const size_t, const size_t);
 
+    double field_part(const int8_t&);
+
     /***************** Public functions ***********************/
 
-    Cumulant run_equilibrium_research(const IsingConfiguration cfg, const Ising3DSystem systm)
+    Cumulant run_equilibrium_research(const IsingConfiguration& cfg, const Ising3DSystem& systm)
     {
       int magn = 0, energy = 0;
 
       double w_array[PROBABILITIES_SIZE];
       Cumulant results = { 0.0, 0.0, 0.0, 0.0 };
 
-      prepare_research(w_array, cfg.temperature, systm, energy, magn);
+      prepare_research(w_array, cfg, systm, energy, magn);
 
       for (size_t eqil_counter = 0; eqil_counter < cfg.mc_excluded_steps; eqil_counter++) {
         do_step(systm.spin_structure, w_array, systm.linear_size, systm.spins_number, energy, magn);
@@ -45,13 +55,13 @@ namespace libising3d {
 
         Если в начальной конфигурации системы все спины не соноправлены, то возращается 0.
     */
-    size_t get_relaxation_for_order_init_state(Ising3DSystem systm, const double temperature)
+    size_t get_relaxation_for_order_init_state(const IsingConfiguration& cfg, const Ising3DSystem& systm)
     {
         size_t mc_counter = 0;
         int magn = 0, energy = 0;
         double w_array[PROBABILITIES_SIZE], cur_unit_magn, init_unit_magn;
 
-        prepare_research(w_array, temperature, systm, energy, magn);
+        prepare_research(w_array, cfg, systm, energy, magn);
 
         if ( magn != int( systm.spins_number ) ) {
             return 0;
@@ -68,7 +78,7 @@ namespace libising3d {
                 break;
             }
 
-            if ( mc_counter > 10000 ) {
+            if ( mc_counter > RELAXATION_STOP_MCSTEP ) {
                 break;
             }
         }
@@ -82,17 +92,22 @@ namespace libising3d {
     }
 
     /***************** Private functions ***********************/
-    void prepare_research(double *w_array, const double temp, const Ising3DSystem systm, int &current_energy, int &current_magn)
+    void prepare_research(double *w_array, const IsingConfiguration& cfg, const Ising3DSystem& systm, int &current_energy, int &current_magn)
     {
         size_t i, j, k, linear_size = systm.linear_size;
         int neibours_sum;
         int8_t ***spins = systm.spin_structure;
 
-        // Prepare all possible probabilities array
+        // Prepare all possible probabilities array (spin's part)
         w_array[0] = 1;
         for (i = 1; i < PROBABILITIES_SIZE; i++) {
-            w_array[i] = std::exp( (-2.0 * i) / temp);
+            w_array[i] = std::exp( (-2.0 * i) / cfg.temperature);
         }
+
+        // Prepare field probabilities
+        w_field_part.positive_dH = std::exp( (2.0 * cfg.h_field) / cfg.temperature );
+        w_field_part.negative_dH = std::exp( (-2.0 * cfg.h_field) / cfg.temperature );
+        w_field_part.h = cfg.h_field;
 
         // Calculate initial energy and magnetization
         for (i = 0; i < linear_size; ++i) {
@@ -128,7 +143,7 @@ namespace libising3d {
                                     + spins[i][j][next_spin(k, linear_size)] + spins[i][j][prev_spin(k, linear_size)];
             diff_energy = neibours_sum * spins[i][j][k];
 
-            if ( (diff_energy <= 0) || (genrand64_real1() < w_array[diff_energy]) ) {
+            if ( (diff_energy <= 0) || (genrand64_real1() < (w_array[diff_energy] * field_part(spins[i][j][k]) ) ) ) {
               spins[i][j][k] = -spins[i][j][k];
 
               current_magn    += 2 * spins[i][j][k];
@@ -152,6 +167,19 @@ namespace libising3d {
             return linear_size - 1;
         } else {
             return position - 1;
+        }
+    }
+
+    double field_part(const int8_t& current_spin)
+    {
+        if ( std::abs(w_field_part.h) < FLOAT_ACCURACY ) {
+            return 1.0;
+        }
+
+        if ( current_spin > 0) {
+            return w_field_part.negative_dH;
+        } else {
+            return w_field_part.positive_dH;
         }
     }
 

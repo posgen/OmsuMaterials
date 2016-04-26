@@ -41,6 +41,7 @@ int main()
     int8_t ***spin_array;
 
     Ising3DSystem systm;
+    IsingConfiguration cfg;
 
     cout << "Enter linear size of system: ";
     cin >> lin_size;
@@ -62,7 +63,8 @@ int main()
             }
         }
 
-        rel_time = get_relaxation_for_order_init_state(systm, temp);
+        cfg.temperature = temp;
+        rel_time = get_relaxation_for_order_init_state(cfg, systm);
         cout << "For temperature " << temp << " the relaxation time is: " << rel_time << endl;
     }
 
