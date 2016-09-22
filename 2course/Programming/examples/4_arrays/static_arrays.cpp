@@ -3,6 +3,7 @@
     Большинство написанного аналогично языку C (static_arrays.cpp). Но имеются исключения:
       - присвоение массиву начальных значений
       - ввод/вывод в примерах
+      - использование <random> из C++11
 
     Массив - структура данных, содержащая набор проиндексированных элементов. В языке C++
     массивы являются типизированными, то есть могут содержать значения только одного типа.
@@ -49,68 +50,74 @@
 */
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <clocale>     // Установка локали для Windows-консоли
+#include <chrono>      // работа со временем
+#include <random>      // генератор случайных чисел
 
-using namespace std;
 
 // Пример заполнения массива из 20 элементов случайными числами от 0 до 1.
-void print_random_array()
+// В функцию передаётся объект генератора случайных чисел
+void print_random_array(std::mt19937_64& gener)
 {
-    float array[20], sum{0.0};
+    double real_array[20], sum{0.0};
 
     for (int index = 0; index < 20; index++) {
-        array[index] = (double) rand() / RAND_MAX;
-        cout << "The element " << index + 1 << " is equal to " << array[index] << endl;
-        sum += array[index];
+        real_array[index] = double( gener() ) / gener.max();
+        std::cout << "The element " << index + 1 << " is equal to " << real_array[index] << std::endl;
+        sum += real_array[index];
     }
 
-    cout << "The sum of 20 elemetns is " << sum << endl;
+    std::cout << "Сумма 20 элемнтов массива равна " << sum << std::endl << std::endl;
 }
 
 // Массив также можно передавать как параметр функции
-void print_int_array(int size, int array[])
+// Но в этом случае обязательно должна быть передана информация о его размере
+void print_int_array(int size, int int_array[])
 {
-    cout << "Printing array..." << endl;
+    std::cout << "Печать массива..." << std::endl;
     for (int i = 0; i < size; i++)
-        printf("%d ", array[i]);
-    cout << endl << "Printing done." << endl << endl;
+        std::cout << int_array[i] << " ";
+    std::cout << std::endl << "... окончена." << std::endl << std::endl;
 }
 
 int main()
 {
-    int negative_count = 0;
-    int array3D[10][10][10], array2[] = { 3, 5, 1, -23 }, array4[8] = { 1, -7 };
-    float average = 0;
+    std::setlocale(LC_ALL, "RUS");
 
-    srand(time(NULL));
-    print_random_array();
+    unsigned long seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::mt19937_64 gener1( seed );
+
+    int negative_count = 0;
+    int array3D[10][10][10];
+    double average = 0;
+
+    print_random_array(gener1);
 
     // заполним трёхмерный массив array3D случайными числами от -5 до 5 и вычислим среденее среди всех отрицательных.
     // size_t - встроенный тип данных, предназначенный для неотрицательных целых значений
     for (size_t i = 0; i < 10; i++) {
         for (size_t j = 0; j < 10; j++) {
             for (size_t k = 0; k < 10; k++) {
-                array3D[i][j][k] = -5 + (rand() % 11);
+                array3D[i][j][k] = -5 + (gener1() % 11);
                 if (array3D[i][j][k] < 0) {
                     negative_count++;
                     average += array3D[i][j][k];
                 }
 
-                cout << array3D[i][j][k] << " ";
+                std::cout << array3D[i][j][k] << " ";
             }
-            cout << endl;
+            std::cout << std::endl;
         }
-        cout << endl << "----------------" << endl;
+        std::cout << std::endl << "----------------" << std::endl;
     }
 
     if (negative_count > 0) {
-        cout << "The average is " << average / negative_count << endl;
+        std::cout << "Среденее значение отрицательных элементов " << average / negative_count << std::endl;
     } else {
-        cout << "No negative numbers" << endl;
+        std::cout << "Не найдено отрицательных элементов в массиве" << std::endl;
     }
 
-
+    int array2[] = { 3, 5, 1, -23 }, array4[8] = { 1, -7 };
     print_int_array(4, array2);
     print_int_array(8, array4);
 
