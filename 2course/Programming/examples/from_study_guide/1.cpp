@@ -45,7 +45,7 @@ int main()
         if (x > z) {
             std::cout << "z = " << z << "\n";
             std::cout << "x = " << x << "\n";
-            printf("y = %d\n", y);
+            std::cout << "y = " << y << "\n";
         } else {
             std::cout << "x = " << x << "\n";
 
