@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 // Проверка правильности введённой даты
 int is_valid_date(int day, int month, int year)
@@ -33,34 +34,36 @@ int is_valid_date(int day, int month, int year)
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     int i, sum, day, month, year, temperature;
     FILE *file_pointer;
     char *file_name = "temperature";
 
     do {
-        printf("\nEnter day/month/year (separated by slash): ");
+        printf("\nВведите дату день/месяц/год (слэш - разделитель): ");
         scanf("%d/%d/%d", &day, &month, &year);
     } while ( !is_valid_date(day, month, year) );
 
     do {
-        printf("\nEnter temperature (in [-100; 80] range): ");
+        printf("\nВведите температуру (в диапазоне [-100; 80]): ");
         scanf("%d", &temperature);
     } while ( temperature < -100 || temperature > 80 );
 
-    printf("\nSaving data...");
+    printf("\nСохранение данных...");
     file_pointer = fopen(file_name, "a");
     if ( file_pointer == NULL ) {
-        perror("Not possible to open file for writing");
+        perror("Невозможно открыть файл для записи");
         return -1;
     }
 
     fprintf(file_pointer, "%d %d %d %d\n", day, month, year, temperature);
     fclose(file_pointer);
 
-    printf("\nLoading data...");
+    printf("\nЗагрузка данных...");
     file_pointer = fopen(file_name, "r");
     if ( file_pointer == NULL ) {
-        perror("Not possible to open file for reading");
+        perror("Невозможно открыть файл для чтения");
         return -1;
     }
 
@@ -70,7 +73,7 @@ int main()
     }
     fclose(file_pointer);
 
-    printf("\nThe average temperature is: %lf", (double) sum / i);
+    printf("\nСреднее значение температуры: %lf", (double) sum / i);
 
     return 0;
 }

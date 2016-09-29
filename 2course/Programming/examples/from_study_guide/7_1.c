@@ -7,15 +7,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     int i, j, rowsNum, colsNum, jRow;
     double **triMatr;
 
-    printf("Enter the number of rows: "); // количство строк
+    printf("Введите количество строк: ");
     scanf("%d", &rowsNum);
-    printf("Enter the number of columns: "); // количество столбцов
+    printf("Введите количество столбцов: "); // количество столбцов
     scanf("%d", &colsNum);
 
     // Выделяем память под массив указателей
@@ -25,7 +28,7 @@ int main()
         В языке С этот указатель задан константой NULL
     */
     if ( triMatr == NULL ) {
-        printf("Error with memory occupation\n");
+        printf("Ошибка выделения памяти\n");
         return -1;
     }
 
@@ -34,7 +37,7 @@ int main()
         // Выделяем память для каждой строки
         triMatr[i] = (double *) malloc(jRow * sizeof(double));
         if ( triMatr[i] == NULL ) {
-            printf("Error with memory occupation\n");
+            printf("Ошибка выделения памяти\n");
             exit(1); // аварийное завершение программы, все ранее выделенные ресурсы возращаются системе
         }
 
@@ -43,7 +46,7 @@ int main()
         }
     }
 
-    printf("The result matrix:\n");
+    printf("Итоговая матрица:\n");
     for (i = 0; i < rowsNum; i++) {
         jRow = (i < colsNum) ? i + 1: colsNum;
         for (j = 0; j < jRow; j++) {

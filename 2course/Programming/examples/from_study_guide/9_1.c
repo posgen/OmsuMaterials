@@ -2,7 +2,7 @@
     В программе ввести и инициализировать массив структур, каждая из которых
     описывает материальную точку. Элементы структурного типа: координаты и
     массы частиц, а также расстояния от центра масс до всех точек набора.
-    Окончание ввода - ннулевое значение массы точки.
+    Окончание ввода - нулевое значение массы точки.
 
     Общая масса системы точек M = sum_{i} m_i, где под m_i обозначена масса
     отдельных точек.
@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 struct MassPoint {
     double coord[3];
@@ -31,6 +32,8 @@ struct PointSet {
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "RUS");
+
     int i, count = 0;
     double rx, ry, rz;
 
@@ -38,10 +41,10 @@ int main(int argc, char *argv[])
     struct PointSet next_point;
     struct PointSet *p_array = NULL;
 
-    printf("Enter the points (order: mass, x, y, z). Enter 0 mass to stop\n");
+    printf("Введите материальные точки (порядок ввода: масса, x, y, z).\nВведите нулевую массу для прекращения ввода точек.\n");
 
     while (1) {
-        printf("Point number %d\n", count + 1);
+        printf("Точка номер %d\n", count + 1);
         scanf("%le", &next_point.m_point.mass);
         if ( next_point.m_point.mass < 0.0000000001 )
             break;
@@ -54,7 +57,7 @@ int main(int argc, char *argv[])
 
         p_array = (struct PointSet *) realloc(p_array, count * sizeof(struct PointSet));
         if (p_array == NULL) {
-            perror("Realocation memory error");
+            perror("Ошибка выделения памяти");
             return -1;
         }
         p_array[count - 1] = next_point;
@@ -69,9 +72,9 @@ int main(int argc, char *argv[])
     mass_center.m_point.coord[1] /= mass_center.m_point.mass;
     mass_center.m_point.coord[2] /= mass_center.m_point.mass;
 
-    puts("Result:");
-    puts("Mass center: ");
-    printf("mass = %lf, coords = {%lf, %lf, %lf}\n", mass_center.m_point.mass,
+    puts("Результат:");
+    puts("Центр масс: ");
+    printf("масса = %lf, координаты = {%lf, %lf, %lf}\n", mass_center.m_point.mass,
             mass_center.m_point.coord[0], mass_center.m_point.coord[1], mass_center.m_point.coord[2]);
 
     puts("Points:");
@@ -82,7 +85,7 @@ int main(int argc, char *argv[])
 
         p_array[i].distance = sqrt(rx*rx + ry*ry + rz*rz);
 
-        printf("Number %d, coord: {%lf, %lf, %lf}\n\tmass = %lf, distance = %lf\n",
+        printf("Точка номер %d, координаты: {%lf, %lf, %lf}\n\tмасса = %lf, расстояние от центра масс = %lf\n",
             i + 1, p_array[i].m_point.coord[0], p_array[i].m_point.coord[1], p_array[i].m_point.coord[2],
             p_array[i].m_point.mass, p_array[i].distance);
     }
