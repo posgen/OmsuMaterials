@@ -12,15 +12,18 @@
 */
 
 #include <stdio.h>
-#include "10_2_libctree.h"
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
+#include "10_2_libctree.h"
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     struct Node *root = NULL;
     char *new_word;
 
-    puts("Enter words to collect (sign '!' to stop)");
+    puts("Введите слова (ввод знака '!' означает прекращение ввода)");
 
     while ( 1 ) {
         new_word = get_word();

@@ -48,15 +48,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 #include "10_1_listclib.h"
 
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     struct Cell *cell_list = NULL, *new_cell;
 
-    puts("Enter lines to collect (empty line to exit)");
+    puts("Введите строки для упорядочивания (пустая строка означает прекращение ввода)");
 
     while ( 1 ) {
         new_cell = create_cell();
@@ -67,7 +70,7 @@ int main()
         cell_list = insert_to_list(cell_list, new_cell);
     }
 
-    puts("Printing tree:");
+    puts("Печатаем дерева:");
     print_list(cell_list);
     clear_list(cell_list);
 
