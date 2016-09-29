@@ -1,20 +1,23 @@
 // Упорядочить три числа в порядке возрастания
-#include <stdio.h>
+#include <stdio.h> // функции ввода-вывода
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     int x, y, z;
 
-    printf("x: ");
+    printf("Введите x: ");
     scanf("%d", &x);
 
-    printf("\ny: ");
+    printf("\nВведите y: ");
     scanf("%d", &y);
 
-    printf("\nz: ");
+    printf("\nВведите z: ");
     scanf("%d", &z);
 
-    printf("Result: \n");
+    printf("В порядке возрастания: \n");
 
     if (x > y) {
         if (y > z) {
@@ -42,7 +45,7 @@ int main()
 
             if (y > z) {
                 printf("z = %d\n", z);
-                printf("y = %d\n", y);                
+                printf("y = %d\n", y);
             } else {
                 printf("y = %d\n", y);
                 printf("z = %d\n", z);
