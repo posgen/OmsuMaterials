@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 #define SIZE 80
 
@@ -18,6 +19,8 @@ void printText(char array[], int size)
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     char text[SIZE], sym;
     char *head, *tail;
     int i;
@@ -28,7 +31,7 @@ int main()
         text[i] = 97 + (rand() % 25);
     }
 
-    printf("Initial text:\n");
+    printf("Исходный массив символов:\n");
     printText(text, SIZE);
 
     for (head = text, tail = &text[SIZE - 1]; head < tail;) {
@@ -37,7 +40,7 @@ int main()
         *tail-- = sym;
     }
 
-    printf("After inverting:\n");
+    printf("В обратном порядке:\n");
     printText(text, SIZE);
     return 0;
 }

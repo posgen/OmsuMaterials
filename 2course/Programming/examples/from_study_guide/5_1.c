@@ -5,6 +5,7 @@
 */
 #include <stdio.h>
 #include <math.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 #define PRECISION 0.000000001
 
@@ -18,14 +19,16 @@ double newton_root(double );
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     double x, result;
 
-    printf("Enter x: ");
+    printf("Введите x: ");
     scanf("%lf", &x);
 
     // вызываем функцию, передавая ей в качестве аргумента переменную x и сохраняя возращённый ею результат в переменной result
     result = newton_root(x);
-    printf("The root of x is: %lf", result);
+    printf("Корень из x равен %lf\n", result);
 
     return 0;
 }

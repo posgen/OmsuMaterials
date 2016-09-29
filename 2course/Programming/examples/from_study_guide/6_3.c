@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 
 void rank2(int *x, int *y)
@@ -29,19 +30,21 @@ void rank3(int *x, int *y, int *z)
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     int i, j, k;
 
-    printf("Enter i: ");
+    printf("Введите i: ");
     scanf("%d", &i);
 
-    printf("Enter j: ");
+    printf("Введите j: ");
     scanf("%d", &j);
 
-    printf("Enter k: ");
+    printf("Введите k: ");
     scanf("%d", &k);
 
     rank3(&i, &j, &k);
 
-    printf("After processing:\ni = %d, j = %d, k = %d\n", i, j, k);
+    printf("После обработки:\ni = %d, j = %d, k = %d\n", i, j, k);
     return 0;
 }

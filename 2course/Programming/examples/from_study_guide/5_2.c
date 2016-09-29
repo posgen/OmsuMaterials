@@ -3,6 +3,7 @@
     В качестве вспомогательной определить функцию для обмена значений двух элементов массива.
 */
 #include <stdio.h>
+#include <locale.h> // установка русской локали (нужна для ОС Windows)
 
 // Функция перестановки двух элементов в массиве.
 // Тип возращаемого значения - void, означающий, что функция не возращает никакого значения (не требуется явный "return value;").
@@ -34,15 +35,17 @@ void printArray(int array[], int size)
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     int line[] = { 5, 6, 2, 4, 9, 2, 1 }, size;
     size = sizeof(line) / sizeof(line[0]);
 
-    printf("Initial array:\n");
+    printf("Исходный массив:\n");
     printArray(line, size);
 
     reverse(line, size);
 
-    printf("\nResult array:\n");
+    printf("\nМассив в обратном порядке:\n");
     printArray(line, size);
 
     return 0;
