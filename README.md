@@ -14,6 +14,8 @@
 
 Краткие или не очень руководства и справки по некоторым темам будут появляться тут: https://github.com/posgen/OmsuMaterials/wiki
 
+PDF'ки с лекций доступны здесь: https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/docs/lectures
+
 ### Для 4-го курса, предмет "Компьютерное моделирование фазовых переходов"
 
 Базовые программы и некоторые справочные документы находятся в директории "4course/phaseTransitions/"
