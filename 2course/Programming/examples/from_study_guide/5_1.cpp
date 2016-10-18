@@ -56,7 +56,7 @@ double newton_root(double num)
     do {
         r_cur = r_next;
         r_next = (r_cur + num / r_cur) / 2;
-    } while (fabs(r_cur - r_next) > PRECISION);
+    } while ( abs(r_cur - r_next) > PRECISION );
 
     return r_next;
 }
