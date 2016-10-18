@@ -1,10 +1,10 @@
 /*
     Определить функцию, которая упорядочивает значения трёх переданных ей элементов целого типа.
     Использование указателей. Показан один из способов менять внутри функций значения переданных элементов.
+    Версия для C++.
 */
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h> // установка русской локали (нужна для ОС Windows)
+#include <iostream>
+#include <clocale> // установка русской локали (нужна для ОС Windows)
 
 
 void rank2(int *x, int *y)
@@ -29,21 +29,22 @@ void rank3(int *x, int *y, int *z)
 
 int main()
 {
-    setlocale(LC_ALL, "RUS");
+    std::setlocale(LC_ALL, "RUS");
 
     int i, j, k;
 
-    printf("Введите i: ");
-    scanf("%d", &i);
+    std::cout << "Введите i: ";
+    std::cin >> i;
 
-    printf("Введите j: ");
-    scanf("%d", &j);
+    std::cout << "Введите j: ";
+    std::cin >> j;
 
-    printf("Введите k: ");
-    scanf("%d", &k);
+    std::cout << "Введите k: ";
+    std::cin >> k;
 
     rank3(&i, &j, &k);
 
-    printf("После обработки:\ni = %d, j = %d, k = %d\n", i, j, k);
+    std::cout << "После обработки:\ni = " << i << ", j = " << j << ", k = " << k << "\n";
+
     return 0;
 }

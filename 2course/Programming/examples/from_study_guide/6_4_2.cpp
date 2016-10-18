@@ -4,33 +4,35 @@
     использованием функции new (пример на языке C++).
 */
 #include <iostream>
+#include <clocale>
 
 using namespace std;
 
 int main()
 {
-    int i, count;
-    float *array;
+    setlocale(LC_ALL, "RUS");
 
-    cout << "Enter numbers count: ";
-    cin >> count;
+    size_t nums_count;
+    float *nums_array;
+
+    cout << "Введите количество чисел: ";
+    cin >> nums_count;
 
     // динамически выделяем блок памяти под n элементов типа float
-    array = new float[count];
+    nums_array = new float[nums_count];
 
-    cout << "Enter " << count << "numbers" << endl;
-    for (i = 0; i < count; i++) {
-        cout << "number " << i + 1 << " = ";
-        cin >> array[i];
+    cout << "Введите " << nums_count << " чисел" << endl;
+    for (size_t i = 0; i < nums_count; i++) {
+        cout << "число номер " << i + 1 << " = ";
+        cin >> nums_array[i];
     }
 
 
-    cout << endl << "\nReverse order:" << endl;
-    for (i = count-1; i >= 0; i--) {
-        cout << "number " << i + 1 << " = " << array[i] << endl;
+    cout << endl << "\nОбратный порядок:" << endl;
+    for (int i = nums_count-1; i >= 0; i--) {
+        cout << "число номер " << i + 1 << " = " << nums_array[i] << endl;
     }
 
-    delete[] array; // освобождение динамически выделенной памяти
+    delete[] nums_array; // освобождение динамически выделенной памяти
     return 0;
 }
-
