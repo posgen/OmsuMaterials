@@ -39,36 +39,43 @@
         - узнать полный путь к компилятору (например: "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-g++.exe" - при дефолтной установке CodeBlocks)
         - перейти к директории с исходными файлами
         - ввести команду вида:
-            "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-g++.exe" -std=c++11 -o 10_1.ex 10_1_main.cpp 10_1_listlib.cpp
+            "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-g++.exe" -std=c++11 -o 10_1.exe 10_1_main.cpp 10_1_listlib.cpp
             
             * в Linux дистрибутивах проще:
             g++ -std=c++11 -o 10_1.ex 10_1_main.cpp 10_1_listlib.cpp
 */
 
 #include <iostream>
+#include <clocale>
 
 #include "10_1_listlib.h"
 
 using namespace std;
-using namespace listlib;
+using namespace listlib; // используем собственное пространство имён
 
 
 int main()
 {
-    Cell *cell_list{nullptr}, *new_cell;
+    setlocale(LC_ALL, "RUS");
 
-    cout << "Enter lines to collect (empty line to exit)" << endl;
+    Cell *cell_list = nullptr, *new_cell;
+
+    cout << "Введите строки для списка (пустая строка будет означать конец ввода)" << endl;
 
     while (true) {
+        // можно функции из самописной библиотеки 10_1_listlib вызывать и по полному имени
         new_cell = listlib::create_cell();
         if (new_cell == nullptr)
             break;
 
+        // а можно и без префикса вследствии подключения пространства имён в строке 54 
         cell_list = insert_to_list(cell_list, new_cell);
     }
 
-    cout << "Printing tree:" << endl;
+    cout << "Печатаем список:" << endl;
     print_list(cell_list);
+
+    // Удаление всех узлов списка
     clear_list(cell_list);
     return 0;
 }

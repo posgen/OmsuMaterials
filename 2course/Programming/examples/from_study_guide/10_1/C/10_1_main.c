@@ -25,7 +25,7 @@
         struct Node {
             // тут объявляются поля для данных
 
-            Node *next; // указатель на следующий элемент списка.
+            struct Node *next; // указатель на следующий элемент списка.
         };
 
 
@@ -40,7 +40,7 @@
         - узнать полный путь к компилятору (например: "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-g++.exe" - при дефолтной установке CodeBlocks)
         - перейти к директории с исходными файлами
         - ввести команду вида:
-            "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-gcc.exe" -o 10_1.ex 10_1_main.c 10_1_listlib.c
+            "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-gcc.exe" -o 10_1.exe 10_1_main.c 10_1_listlib.c
 
             * в Linux дистрибутивах проще:
             gcc -o 10_1.ex 10_1_main.c 10_1_listlib.c
@@ -70,9 +70,9 @@ int main()
         cell_list = insert_to_list(cell_list, new_cell);
     }
 
-    puts("Печатаем дерева:");
+    puts("Печатаем список:");
     print_list(cell_list);
-    clear_list(cell_list);
+    clear_list(cell_list); // удаляем все узлы списка
 
     return 0;
 }
