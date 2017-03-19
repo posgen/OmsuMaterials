@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     printf("масса = %lf, координаты = {%lf, %lf, %lf}\n", mass_center.m_point.mass,
             mass_center.m_point.coord[0], mass_center.m_point.coord[1], mass_center.m_point.coord[2]);
 
-    puts("Points:");
+    puts("Введённые точки:");
     for (i = 0; i < count; i++) {
         rx = p_array[i].m_point.coord[0] - mass_center.m_point.coord[0];
         ry = p_array[i].m_point.coord[1] - mass_center.m_point.coord[1];
