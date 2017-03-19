@@ -12,16 +12,20 @@
 */
 
 #include <iostream>
+#include <clocale>
+
 #include "10_2_libtree.h"
 
 using namespace std;
 
 int main()
 {
-    Node *root{nullptr};
+    setlocale(LC_ALL, "RUS");
+
+    Node *root = nullptr;
     char *new_word;
 
-    cout << "Enter words to collect (sign '!' to stop)" << endl;
+    cout << "Введите слова для добавления в дерево (введите '!' для прекращения ввода)" << endl;
 
     while (true) {
         new_word = get_word();
