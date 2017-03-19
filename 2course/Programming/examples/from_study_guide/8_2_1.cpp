@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include <clocale>
 
 using namespace std;
 
@@ -18,23 +19,25 @@ void error(const char *s, const char *s2 = "")
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "RUS");
+
     if ( argc != 3 )
-        error("Wrong number of arguments");
+        error("Неправильное число аргументов. Использование: <название_программы>.exe <исходный_файл> <файл_для_записи>");
 
     ifstream source(argv[1]);
     if ( !source )
-        error("Can't open source file", argv[1]);
+        error("Проблемы при открытии исходного файла", argv[1]);
 
     ofstream target(argv[2]);
     if ( !target )
-        error("Can't open source file", argv[2]);
+        error("Проблемы при открытии файла для записи", argv[2]);
 
     char symbol;
     while ( source.get(symbol) )
         target.put(symbol);
 
     if ( !source.eof() || target.bad() )
-        error("There were errors during copying");
+        error("Возникли ошибки при копировании!");
 
     source.close();
     target.close();
