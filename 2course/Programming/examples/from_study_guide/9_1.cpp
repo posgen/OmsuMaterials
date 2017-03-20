@@ -57,11 +57,11 @@ int main(int argc, char *argv[])
         cout << "\tкоординаты (3 значения через пробел): ";
         cin >> next_point.m_point.coord[0] >> next_point.m_point.coord[1] >> next_point.m_point.coord[2];
 
-        count++;
+        ++count;
 
-        p_array = (struct PointSet *) realloc(p_array, count * sizeof(struct PointSet));
+        p_array = (PointSet *) realloc(p_array, count * sizeof(PointSet));
         if (p_array == nullptr) {
-            cerr << "Проблема с выделением дополнительно памяти\n";
+            cerr << "Проблема с выделением дополнительной памяти\n";
             return -1;
         }
         p_array[count - 1] = next_point;
