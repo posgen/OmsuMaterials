@@ -41,9 +41,9 @@ int main(int argc, char *argv[])
     int i, count = 0;
     double rx, ry, rz;
 
-    struct PointSet mass_center = { {0., 0., 0., 0.}, 0. };
-    struct PointSet next_point;
-    struct PointSet *p_array = nullptr;
+    PointSet mass_center = { {0., 0., 0., 0.}, 0. };
+    PointSet next_point;
+    PointSet *p_array = nullptr;
 
     cout << "Введите точки (порядок ввода: масса, координата x, координата y, координата z).\nПоставьте 0 в качестве массы для прекращения задания точек" << endl;
 
