@@ -19,13 +19,7 @@ unsigned long binom_coef(unsigned n, unsigned k)
 
     tmp = 2;
     while ( tmp <= k ) {
-        resuif ( k == 0 ) {
-            printf("x^%u ", n);
-        }
-
-        if ( k == n ) {
-            printf("y^%u ", n);
-        }lt /= tmp;
+        result /= tmp;
         ++tmp;
     }
 
