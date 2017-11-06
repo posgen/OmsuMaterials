@@ -8,8 +8,6 @@
 
 В https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/examples/from_study_guide/ - все программы из методического пособия в рабочем виде.
 
-В https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/docs/ - размещаются краткие описания по компиляции и запуску программ, а также справочные материалы по C/C++
-
 Файлы будут периодически обновляться
 
 Краткие или не очень руководства и справки по некоторым темам будут появляться тут: https://github.com/posgen/OmsuMaterials/wiki
