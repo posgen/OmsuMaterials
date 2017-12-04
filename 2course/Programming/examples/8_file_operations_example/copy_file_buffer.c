@@ -37,12 +37,12 @@ int main(void)
     */
 
     // Файл из которого копируем
-    const char *source = "input.txt";
+    const char source[] = "input.txt";
     FILE *in_stream = fopen(source, "rb");
 
     if (in_stream != NULL) {
         // Файл, куда копируем
-        const char *dest = "output.txt";
+        const char dest[] = "output.txt";
         // Создание потока вывода
         FILE  *out_stream = fopen(dest, "wb");
 
@@ -52,7 +52,7 @@ int main(void)
             */
             fseek(in_stream, 0, SEEK_END); // перемещаем указатель файла в конец
             long int file_size = ftell(in_stream); // получаем размер файла в байтах
-            fseek(in_stream, 0, SEEK_BEG); // возращаем указатель файла в начало
+            fseek(in_stream, 0, SEEK_SET); // возращаем указатель файла в начало
 
             char *buff = (char *) malloc(file_size * sizeof(char));
             if (buff != NULL) {    

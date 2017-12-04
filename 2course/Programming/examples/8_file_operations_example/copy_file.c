@@ -37,12 +37,12 @@ int main(void)
     */
 
     // Файл из которого копируем
-    const char *source = "input.txt";
+    const char source[] = "input.txt";
     FILE *in_stream = fopen(source, "r");
 
     if (in_stream != NULL) {
         // Файл, куда копируем
-        const char *dest = "output.txt";
+        const char dest[] = "output.txt";
         // Создание потока вывода
         FILE  *out_stream = fopen(dest, "w");
 
