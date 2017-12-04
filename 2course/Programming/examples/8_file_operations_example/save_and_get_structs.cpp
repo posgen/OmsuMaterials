@@ -22,7 +22,7 @@ struct Product {
 
 int main()
 {
-    char file_name[] = "products.dat", buf[NAME_SIZE];
+    char file_name[] = "products.bin", buf[NAME_SIZE];
     size_t prods_count{0};
     Product prd;
 
