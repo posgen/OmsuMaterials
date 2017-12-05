@@ -8,7 +8,8 @@
 
 using namespace std;
 
-int main () {
+int main() 
+{
     /*
         Здесь показано, как можно отложить открытие файла. Переменная потока сначало определяется,
         а затем конкретный файл открывается через функцию экземпляра - open.
@@ -19,7 +20,7 @@ int main () {
     if (out_file) {
         out_file.write ("This is an apple",16);
         long pos = out_file.tellp();
-        out_file.seekp (pos-7);
+        out_file.seekp (pos - 8);
         out_file.write (" sam",4);
 
         out_file.close();
