@@ -7,20 +7,19 @@ using namespace std;
 
 int main()
 {
-    int matrixOrder; // порядок матрицы
+    size_t matrix_order; // порядок матрицы
 
-    cout << "Enter matrix order: ";
-    cin >> matrixOrder;
+    cout << "Введите размер квадратной матрицы: ";
+    cin >> matrix_order;
 
-    float **matr;
+    double **matr;
     // динамически выделяем блок памяти под matrixOrder элементов типа float* (массив указателей)
-    matr = new float*[matrixOrder];
+    matr = new float*[matrix_order];
 
-    int i, j;
-    for (i = 0; i < matrixOrder; i++) {
-        matr[i] = new float[matrixOrder];
+    for (size_t i = 0; i < matrix_order; i++) {
+        matr[i] = new double[matrix_order];
 
-        for (j = 0; j < matrixOrder; j++) {
+        for (size_t j = 0; j < matrix_order; j++) {
             if (i != j)
                 matr[i][j] = 0;
             else
@@ -28,15 +27,16 @@ int main()
         }
     }
 
-    cout << "The result" << endl;
-    for (i = 0; i < matrixOrder; i++) {
-        for (j = 0; j < matrixOrder; j++) {
+    // Вывод и одновременное удаление двумерного массива
+    cout << "Созданная матрица:\n";
+    for (size_t i = 0; i < matrix_order; i++) {
+        for (size_t j = 0; j < matrix_order; j++) {
             cout << matr[i][j] << "\t";
         }
         cout << endl;
         delete[] matr[i];
     }
-
     delete[] matr;
+
     return 0;
 }
