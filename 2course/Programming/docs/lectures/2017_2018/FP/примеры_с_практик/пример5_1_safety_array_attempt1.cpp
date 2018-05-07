@@ -35,9 +35,9 @@ private:
 
 int main()
 {
-    SafetyArray my_test_arr; // создаём массив
+    SafetyArray my_test_arr; /// создаём массив
 
-    // заполняем первые 4 элемента
+    /// заполняем первые 4 элемента
     my_test_arr.push_to_end(4.5).push_to_end(7.89)
         .push_to_end(0.555).push_to_end(-8.4);
 
@@ -52,13 +52,18 @@ int main()
     }
     std::cout << "]\n";
 
+    /// проверка доступа к элементам по отрицательным индексам
+    for (int i = -8; i <= 8; ++i) {
+        cout << "my_test_arr.elem_at(" << i << ") = " << my_test_arr.elem_at(i) << "\n";
+    }
+
     SafetyArray arr1, arr2;
 
     arr1.push_to_end(555.5);
     arr1.push_to_end(9.992);
 
     arr2 = arr1;
-    arr2.set_at(1, 6.78); // устанавливаем второй элемент
+    arr2.set_at(1, 6.78); /// устанавливаем второй элемент
 
     std::cout << "Второй элемент массива arr1: " << arr1 << "\n";
     std::cout << "Второй элемент массива arr2: " << arr2 << "\n";
