@@ -36,8 +36,6 @@ void get_value(TValue& val, const std::string intro = "")
             break;
         }
     } while (true);
-
-    clear_stdin();
 }
 
 std::string get_line(const std::string intro = "", const char separator = '\n')
