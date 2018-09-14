@@ -14,7 +14,7 @@ int main()
     double in, out_f;
     get_value(in, "Введите аргумент: ");
 
-    switch(number){
+    switch (number) {
         case 1:
             out_f = sin(in);
             break;
