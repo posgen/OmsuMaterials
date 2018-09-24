@@ -8,6 +8,11 @@
 
 #include <cmath>
 #include <cstdlib>
+#include <clocale>
+
+#ifdef WINDOWS_H
+#include <windows.h>
+#endif // WINDOWS_H
 
 namespace
 {
@@ -113,6 +118,15 @@ void rand_re_seed()
 void rand_re_seed(const size_t seed)
 {
     gnr.seed(seed);
+}
+
+void show_rus_letters()
+{
+#ifdef WINDOWS_H
+    setlocale(LC_ALL, "rus");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+#endif // WINDOWS_H
 }
 
 }
