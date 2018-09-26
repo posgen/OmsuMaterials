@@ -118,12 +118,12 @@ double rand_a_b_excl(const double a = 0.0, const double b = 1.0)
 
 size_t rand_max()
 {
-    return gnr.max();
+    return static_cast<size_t>( gnr.max() );
 }
 
 size_t rand_min()
 {
-    return gnr.min();
+    return static_cast<size_t>( gnr.min() );
 }
 
 void rand_re_seed()
