@@ -84,10 +84,22 @@ void print(T value, Targs... Fargs)
     print(Fargs...);
 }
 
-/// Случайное число в интервале [min; max]
-size_t rand()
+/// Случайное целое число в интервале [min; max]
+size_t rand_std()
 {
     return gnr();
+}
+
+/// Максимальное целое число, которое может вернуть ГПСЧ
+size_t rand_max()
+{
+    return static_cast<size_t>( gnr.max() );
+}
+
+/// Минимальное целое число, которое может вернуть ГПСЧ
+size_t rand_min()
+{
+    return static_cast<size_t>( gnr.min() );
 }
 
 /// Случайное число в интервале [0.0; 1.0]
@@ -114,16 +126,6 @@ double rand_a_b_incl(const double a = 0.0, const double b = 1.0)
 double rand_a_b_excl(const double a = 0.0, const double b = 1.0)
 {
     return a + (b - a) * rand_0_1_excl();
-}
-
-size_t rand_max()
-{
-    return static_cast<size_t>( gnr.max() );
-}
-
-size_t rand_min()
-{
-    return static_cast<size_t>( gnr.min() );
 }
 
 void rand_re_seed()
