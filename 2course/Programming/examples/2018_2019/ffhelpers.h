@@ -2,6 +2,7 @@
 #define FFHELPERS_H_INCLUDED
 
 #include <iostream>
+#include <iomanip>
 #include <limits>
 #include <string>
 #include <random>
@@ -9,6 +10,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <clocale>
+#include <ctime>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,8 +20,12 @@ namespace
 {
 void clear_stdin();
 
+#ifdef _WIN32
+std::mt19937_64 gnr{ static_cast<unsigned long long>(time(nullptr)) };
+#else
 std::random_device hw_rnd{};
 std::mt19937_64 gnr{ hw_rnd() };
+#endif // _WIN32
 }
 
 namespace ffomsu
@@ -130,7 +136,12 @@ double rand_a_b_excl(const double a = 0.0, const double b = 1.0)
 
 void rand_re_seed()
 {
+
+#ifdef _WIN32
+    gnr.seed( static_cast<unsigned long long>(time(nullptr)) );
+#else
     gnr.seed(hw_rnd());
+#endif // _WIN32
 }
 
 void rand_re_seed(const size_t seed)
