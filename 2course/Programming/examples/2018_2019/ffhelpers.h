@@ -19,8 +19,6 @@
 
 namespace
 {
-void clear_stdin();
-
 #ifdef _WIN32
 std::mt19937_64 gnr{ static_cast<unsigned long long>(time(nullptr)) };
 #else
@@ -31,7 +29,6 @@ std::mt19937_64 gnr{ hw_rnd() };
 
 namespace ffomsu
 {
-
 #ifndef M_PI
     #define M_E		    2.7182818284590452354	/* e */
     #define M_LOG2E	    1.4426950408889634074	/* log_2 e */
@@ -47,6 +44,8 @@ namespace ffomsu
     #define M_SQRT2	    1.41421356237309504880	/* sqrt(2) */
     #define M_SQRT1_2	0.70710678118654752440	/* 1/sqrt(2) */
 #endif // M_PI
+
+void clear_stdin();
 
 template<typename TValue>
 void get_value(TValue& val, const std::string intro = "")
@@ -64,18 +63,6 @@ void get_value(TValue& val, const std::string intro = "")
             break;
         }
     } while (true);
-}
-
-std::string get_line(const std::string intro = "", const char separator = '\n')
-{
-    std::string tmp;
-
-    if (intro != "") {
-        std::cout << intro;
-    }
-
-    std::getline(std::cin, tmp, separator);
-    return tmp;
 }
 
 template<typename TValue>
@@ -159,11 +146,6 @@ void show_rus_letters()
 #endif // WIN32
 }
 
-}
-
-namespace
-{
-
 void clear_stdin()
 {
     std::cin.clear();
@@ -171,7 +153,5 @@ void clear_stdin()
 }
 
 }
-
-
 
 #endif // FFHELPERS_H_INCLUDED
