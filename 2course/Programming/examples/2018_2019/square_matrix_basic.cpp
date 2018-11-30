@@ -26,11 +26,11 @@ void print_sq_matrix(SquareMatrix& matrix)
     const size_t sz = matrix.size();
     for (size_t i = 0; i < sz; i++) {
         for (size_t j = 0; j < sz; j++) {
-            print(setw(5), matrix.get(i, j), " ");
+            cout << setw(5) << matrix.get(i, j) << " ";
         }
-        print("\n");
+        cout << "\n";
     }
-    print("\n");
+    cout << endl;
 }
 
 int main()
@@ -45,7 +45,7 @@ int main()
     matr.set(0, 0, 2); matr.set(0, 1, 1); matr.set(0, 2, 1);
     matr.set(1, 0, 1); matr.set(1, 1, 3); matr.set(1, 2, 3);
     matr.set(2, 0, 4); matr.set(2, 1, 5); matr.set(2, 2, -3);
-    print("det(matr) = ", matr.det(), endl);
+    print("det(matr) = ", matr.det(), "\n");
 
     SquareMatrix matr5x5{5};
 
@@ -74,7 +74,7 @@ SquareMatrix::SquareMatrix(size_t N)
 SquareMatrix::~SquareMatrix()
 {
     for (size_t i = 0; i < _size; i++) {
-        delete[] _matr[i] = new double[_size];
+        delete[] _matr[i];
     }
     delete[] _matr;
 }
