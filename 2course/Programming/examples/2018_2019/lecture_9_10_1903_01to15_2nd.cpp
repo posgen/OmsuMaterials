@@ -264,13 +264,11 @@ DynArray1D::DynArray1D(size_t array_size, double value)
 
 DynArray1D::DynArray1D(const DynArray1D& other)
 {
-    cout << "Copy ctor" << endl;
     _length = other._length;
     _capacity = other._capacity;
     _arr = new double[_capacity];
 
-    for (size_t i = 0; i < _length; i++)
-    {
+    for (size_t i = 0; i < _length; i++) {
         _arr[i] = other._arr[i];
     }
 }
