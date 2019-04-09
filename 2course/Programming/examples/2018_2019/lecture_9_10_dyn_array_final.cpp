@@ -349,12 +349,12 @@ void DynArray1D::operator=(const DynArray1D& other)
 /// Возвращаем указатель на первый элемент массива
 double* DynArray1D::begin()
 {
-    return _arr
+    return _arr;
 }
 
 const double * DynArray1D::begin() const
 {
-    return _arr
+    return _arr;
 }
 
 /// Возвращаем указатель на элемент, которые следует за последним
