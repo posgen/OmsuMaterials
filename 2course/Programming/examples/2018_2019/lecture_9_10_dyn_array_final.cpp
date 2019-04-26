@@ -333,14 +333,6 @@ void DynArray1D::operator=(const DynArray1D& other)
     _capacity = other._capacity;
     _arr = new double[_capacity];
 
-    /**
-        БОНУСНАЯ ЗАДАЧА для прикладников:
-            * можно ли оптимизировать копирование элементов из одного
-            массива в другой?
-
-        HINT: найти в документации функцию memcpy, разобраться как работает,
-        поменять перебор всех элементов на её вызов.
-    */
     for (size_t i = 0; i < _length; i++) {
         _arr[i] = other._arr[i];
     }
