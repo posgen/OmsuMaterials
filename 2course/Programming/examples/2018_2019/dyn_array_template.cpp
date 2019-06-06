@@ -99,6 +99,17 @@ public:
     DynArray(DynArray&& other);
 
     /**
+        Специальный конструктор, позволяющий передавать произвольное количество значений -
+        так называемый <<список инициализации>>. Использует библиотеку <initializer_list>
+        и позволяет создавать массивы следующим образом:
+            DynArray<string> arr_of_strs = {"One", "Two", "Three", "Four"};
+
+        Единственный негативный эффект от его появления - необходимость для конструкторов (строки 73, 80)
+        с одним/двумя параметров пользоваться <<круглыми>> скобками вместо <<квадратных>>.
+    */
+    DynArray(initializer_list<TValue> values);
+
+    /**
         Деструктор:
             автоматически удаляет динамическую память, когда перемнная
             данного класса выходит из области видимости.
@@ -262,7 +273,7 @@ std::ostream& operator<<(std::ostream& os, const DynArray<TValue>& obj)
 
 int main()
 {
-    DynArray<double> vec{10, 444.5};
+    DynArray<double> vec(10, 444.5);
 
     cout << vec.length() << endl;
     vec[-4] = 15.0;
@@ -299,6 +310,11 @@ int main()
     DynArray<double> new_vec = std::move(vec);
     cout << "Старый вектор под новой переменной: " << new_vec << endl;
     cout << "Размер vec: " << vec.length() << endl;
+
+    DynArray<string> array_of_strings = {"Первое", "Второе", "Третье", "Четвёртое"};
+    cout << "Длина array_of_strings: " << array_of_strings.length() << endl;
+    cout << "Ёмкость array_of_strings: " << array_of_strings.capacity() << endl;
+    cout << "Сам массив: " << array_of_strings << endl;
 }
 
 /**
@@ -356,6 +372,20 @@ DynArray<TValue>::DynArray(DynArray&& other)
     */
     other._arr = nullptr;
     other._length = other._capacity = 0;
+}
+
+/// Использование списка инициализации для создания объекта массива
+template<typename TValue>
+DynArray<TValue>::DynArray(initializer_list<TValue> values)
+{
+    _length = _capacity = values.size();
+    _arr = new TValue[_capacity];
+
+    size_t i = 0;
+    for (const auto& elem : values) {
+        _arr[i] = elem;
+        i++;
+    }
 }
 
 template<typename TValue>
