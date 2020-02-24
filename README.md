@@ -11,7 +11,7 @@
 
 Для примера, [в данной директории](https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/examples/) - приводятся программы с подробными, по возможности, комментариями - что да как, разделённые по темам. Смотреть на пронумерованные директории - введение в базовое программирование на C или C++.
 
-В [директории](https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/examples/from_study_guide/) назодятся все программы из методического пособия в рабочем виде.
+[Тут](https://github.com/posgen/OmsuMaterials/tree/master/2course/Programming/examples/from_study_guide/) находятся все программы из методического пособия в рабочем виде.
 
 Файлы будут периодически обновляться
 
