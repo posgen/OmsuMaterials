@@ -12,7 +12,7 @@ const size_t NAME_SIZE = 250;
     Структура не должна содержать указателей - при побайтовой записи структуры может 
     быть сохранён только адрес на который указывает указатель!
 */
-typedef struct {
+typedef struct Product {
     char         name[NAME_SIZE];
     double       price;
     unsigned int count;
