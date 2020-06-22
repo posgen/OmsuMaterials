@@ -22,8 +22,6 @@
 
 Инструкция по созданию fork'а и редактированию заметки размещена [здесь](https://github.com/posgen/OmsuMaterials/blob/master/FKN/zachet/how_to_gist_fork.pdf)
 
-Структуру своего билета можно [посмотреть тут](https://github.com/posgen/OmsuMaterials/blob/master/FKN/zachet/SBS_credit_list.pdf)
-
 Примеры задач на зачёт: [смотреть тут](https://github.com/posgen/OmsuMaterials/tree/master/FKN/zachet/example_tasks.pdf)
 
 Примеры вопросов на зачёт: [увидеть здесь](https://github.com/posgen/OmsuMaterials/tree/master/FKN/zachet/example_questions.pdf)
