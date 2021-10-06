@@ -1,15 +1,26 @@
 \documentclass[12pt,a4paper]{article}
 
+% Улучшенный поиск русских слов в полученном pdf-файле
+% добавлять до пакета fontenc
+\usepackage{cmap}
+
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 
-\graphicspath{{images/}}
+% Управление цветами различных элементов. Например - гиперссылок
+\usepackage{color}
+
+% Пакет, добавляющий работающие ссылки на разделы, формулы, литературы
+% и прочие рисунки и таблицы
+\usepackage{hyperref}
 
 %\usepackage[total={17cm, 23cm}, top=2.5cm, left=1.5cm]{geometry}
 \usepackage[top=2.5cm, left=1.5cm]{geometry}
+
+\graphicspath{{images/}}
 
 \title{\bf Исследование неравновесной критической динамики трехмерной сильнонеупорядоченной модели Изинга}
 \author{\it Автор~А.~А., Автор~А.~Б., Автор~А.~В., Автор~А.~Г.}
@@ -18,6 +29,13 @@
 \pagestyle{headings}
 
 \hyphenation{кон-центра-ция} % просто для примера, не хотим разделить центральные два слога
+
+% Убрать цветные рамки от всех внутренних ссылок документа.
+% Команда definecolor - предоставляется пакетом color
+\definecolor{linkcolor}{rgb}{0,0,0}
+\definecolor{citecolor}{rgb}{0,0,0}
+\hypersetup{colorlinks, linkcolor={linkcolor}, citecolor={citecolor}}
+%%%%%%%%%
 
 \begin{document}
 
@@ -204,7 +222,7 @@ from \textbf{a)} the completely initial state with $m_0 = 1$ and
 В данной работе было проведено численное исследование сильнонеупорядоченной модели Изинга для концентраций спинов $p = 0.5$ и  $p = 0.6$. Определены значения критических индексов $\theta'$, $\beta$, $\nu$, $z$ и $\omega$ с учетом ведущей поправки к скейлингу.
 
 
-Численные исследования были проведены с привлечением ресурсов СКИФ МГУ <<Чебышев>>.
+Численные исследования были проведены с привлечением ресурсов СКИФ МГУ "Чебышев".
 
 
 \begin{thebibliography}{99}
