@@ -1,0 +1,142 @@
+\documentclass[brown]{beamer}
+
+% Улучшенный поиск русских слов в полученном pdf-файле
+% добавлять до пакета fontenc
+\usepackage{cmap}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+
+\usetheme{Dresden}
+
+%\usecolortheme{beaver}
+%\useinnertheme{rectangles}
+%\useoutertheme{infolines}
+
+\setbeamercovered{transparent}
+
+\title{\bf Составление презентаций в \LaTeX}
+\author{\it Автор~А.~А., Автор~А.~Б., Автор~А.~В., Автор~А.~Г.}
+%\date{\textit{\small Омский государственный университет им. Ф.М.~Достоевского \\644077, Омск, Россия}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section*{Оглавление}
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{Неполезный скриншот}
+\subsection{тра-ля-ля}
+
+\begin{frame}
+\frametitle{Пример кода в Латех}
+\framesubtitle{senceless}
+
+\center
+\includegraphics[width=.8\textwidth]{/home/ruser/Pictures/image1}
+\end{frame}
+
+\section{Неправильные мысли}
+
+\begin{frame}
+\frametitle{Философия в \LaTeX}
+
+\begin{enumerate}
+\item<1-5> \alert<3>{ Знать } путь
+
+\item<2> и \alert<4>{пройти} его
+
+\item<1,5> не одно и тоже. 
+
+$F = ma$\\
+
+\begin{equation}
+\alert<5>{p_i} = a + ix
+\end{equation}
+
+\end{enumerate}
+
+\end{frame}
+
+\section{Text is evil}
+
+\begin{frame}[plain]
+\frametitle{кУЧА ТЕКСТА в \LaTeX}
+
+At vero \alert<2>{eos et accusamus et iusto} odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti \alert{atque corrupti quos} dolores et quas {\color{green} molestias excepturi sint occaecati} cupiditate non provident, similique \alert<1>{sunt in culpa qui officia} deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. 
+
+Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit \alert<3>{quo minus id quod maxime placeat facere} possimus, omnis voluptas assumenda est, omnis dolor repellendus. 
+
+Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Термин 1}
+Термин 1 это \ldots
+\end{block}
+
+Text1 
+
+\visible<1,4>{\textbf{Исключение}: ииии}
+
+Text2
+
+\only<3>{Roses are red, violets are blue}
+
+Text3
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Не формат}
+{
+\fontsize{10pt}{10pt}\selectfont
+
+\begin{verbatim}
+#include <iostream>
+#include <limits>
+
+int main()
+{
+  int a;
+  std::cout << "Enter a number: ";
+  
+  do {
+    std::cin >> a;
+  
+    if ( std::cin.fail() ) {
+      std::cout << "Next attempt: ";
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>);
+    } else {
+      break;
+    }
+  } while (true);
+  
+  std::cout << "Entered number: " << a << std::endl;
+}
+\end{verbatim}
+}
+\end{frame}
+
+\begin{frame}
+
+\begin{columns}
+\column{0.5\textwidth}
+Column one
+
+\column{0.5\textwidth}
+$$E = mc^2$$
+\end{columns}
+
+\end{frame}
+
+\end{document}
