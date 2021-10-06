@@ -1,7 +1,7 @@
 \documentclass[brown]{beamer}
 
-% РЈР»СѓС‡С€РµРЅРЅС‹Р№ РїРѕРёСЃРє СЂСѓСЃСЃРєРёС… СЃР»РѕРІ РІ РїРѕР»СѓС‡РµРЅРЅРѕРј pdf-С„Р°Р№Р»Рµ
-% РґРѕР±Р°РІР»СЏС‚СЊ РґРѕ РїР°РєРµС‚Р° fontenc
+% Улучшенный поиск русских слов в полученном pdf-файле
+% добавлять до пакета fontenc
 \usepackage{cmap}
 
 \usepackage[T2A]{fontenc}
@@ -16,13 +16,13 @@
 %\useinnertheme{rectangles}
 %\useoutertheme{infolines}
 
-\graphicspath{{images/}}
-
 \setbeamercovered{transparent}
 
-\title{\bf РЎРѕСЃС‚Р°РІР»РµРЅРёРµ РїСЂРµР·РµРЅС‚Р°С†РёР№ РІ \LaTeX}
-\author{\it РђРІС‚РѕСЂ~Рђ.~Рђ., РђРІС‚РѕСЂ~Рђ.~Р‘., РђРІС‚РѕСЂ~Рђ.~Р’., РђРІС‚РѕСЂ~Рђ.~Р“.}
-%\date{\textit{\small РћРјСЃРєРёР№ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СѓРЅРёРІРµСЂСЃРёС‚РµС‚ РёРј. Р¤.Рњ.~Р”РѕСЃС‚РѕРµРІСЃРєРѕРіРѕ \\644077, РћРјСЃРє, Р РѕСЃСЃРёСЏ}}
+\graphicspath{{images/}}
+
+\title{\bf Составление презентаций в \LaTeX}
+\author{\it Автор~А.~А., Автор~А.~Б., Автор~А.~В., Автор~А.~Г.}
+%\date{\textit{\small Омский государственный университет им. Ф.М.~Достоевского \\644077, Омск, Россия}}
 
 \begin{document}
 
@@ -30,33 +30,33 @@
 \titlepage
 \end{frame}
 
-\section*{РћРіР»Р°РІР»РµРЅРёРµ}
+\section*{Оглавление}
 \begin{frame}
 \tableofcontents
 \end{frame}
 
-\section{РќРµРїРѕР»РµР·РЅС‹Р№ СЃРєСЂРёРЅС€РѕС‚}
-\subsection{С‚СЂР°-Р»СЏ-Р»СЏ}
+\section{Неполезный скриншот}
+\subsection{тра-ля-ля}
 
 \begin{frame}
-\frametitle{РџСЂРёРјРµСЂ РєРѕРґР° РІ Р›Р°С‚РµС…}
+\frametitle{Пример кода в Латех}
 \framesubtitle{senceless}
 
 \center
-\includegraphics[height=.8\textheight]{working_later}
+\includegraphics[width=.8\textwidth]{working_later}
 \end{frame}
 
-\section{РќРµРїСЂР°РІРёР»СЊРЅС‹Рµ РјС‹СЃР»Рё}
+\section{Неправильные мысли}
 
 \begin{frame}
-\frametitle{Р¤РёР»РѕСЃРѕС„РёСЏ РІ \LaTeX}
+\frametitle{Философия в \LaTeX}
 
 \begin{enumerate}
-\item<1-5> \alert<3>{ Р—РЅР°С‚СЊ } РїСѓС‚СЊ
+\item<1-5> \alert<3>{ Знать } путь
 
-\item<2> Рё \alert<4>{РїСЂРѕР№С‚Рё} РµРіРѕ
+\item<2> и \alert<4>{пройти} его
 
-\item<1,5> РЅРµ РѕРґРЅРѕ Рё С‚РѕР¶Рµ. 
+\item<1,5> не одно и тоже. 
 
 $F = ma$\\
 
@@ -71,7 +71,7 @@ $F = ma$\\
 \section{Text is evil}
 
 \begin{frame}[plain]
-\frametitle{РєРЈР§Рђ РўР•РљРЎРўРђ РІ \LaTeX}
+\frametitle{кУЧА ТЕКСТА в \LaTeX}
 
 At vero \alert<2>{eos et accusamus et iusto} odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti \alert{atque corrupti quos} dolores et quas {\color{green} molestias excepturi sint occaecati} cupiditate non provident, similique \alert<1>{sunt in culpa qui officia} deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. 
 
@@ -82,13 +82,13 @@ Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saep
 
 \begin{frame}
 
-\begin{block}{РўРµСЂРјРёРЅ 1}
-РўРµСЂРјРёРЅ 1 СЌС‚Рѕ \ldots
+\begin{block}{Термин 1}
+Термин 1 это \ldots
 \end{block}
 
 Text1 
 
-\visible<1,4>{\textbf{РСЃРєР»СЋС‡РµРЅРёРµ}: РёРёРёРё}
+\visible<1,4>{\textbf{Исключение}: ииии}
 
 Text2
 
@@ -98,7 +98,7 @@ Text3
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{РќРµ С„РѕСЂРјР°С‚}
+\frametitle{Не формат}
 {
 \fontsize{10pt}{10pt}\selectfont
 
