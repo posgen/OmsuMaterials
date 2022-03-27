@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1648392663 source:/home/ruser/Documents/OmSU/OmsuMaterials/2course/Programming/2021_2022/practice/220322/main.cpp
+	<algorithm>
+	<iostream>
+	<numeric>
+	<string>
+	"fptarray.h"
+
+1648393108 /home/ruser/Documents/OmSU/OmsuMaterials/2course/Programming/2021_2022/practice/220322/include/fptarray.h
+	<cstddef>
+	<initializer_list>
+	<algorithm>
+
