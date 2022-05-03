@@ -3,6 +3,9 @@
 #include <ctime>
 #include <chrono>
 #include <locale>
+#include <vector>
+#include <string>
+#include <cmath>
 
 /**
     Первая часть работы со временем в C++.
@@ -11,6 +14,16 @@
 */
 
 using namespace std;
+
+double operator""_deg(long double degree)
+{
+    return degree * M_PI / 180.0;
+}
+
+double operator""_deg(unsigned long long degree)
+{
+    return double(degree) * M_PI / 180.0;
+}
 
 int main()
 {
@@ -57,4 +70,7 @@ int main()
 
     auto tt_diff = time(nullptr) - tt;
     cout << "program elapsed: " << tt_diff << "seconds" << endl;
+
+    cout << "sin(30) = " << sin(-30_deg) << endl;
+    cout << "cos(45) = " << cos(-45_deg) << endl;
 }
