@@ -3,17 +3,18 @@
 #include <istream>
 #include <string>
 
-/**
-    [19.04.22, 14:23] Вероятно, вскоре тут будет больше комментарией
-*/
-
 using namespace std;
 
+/// Базовый класс, являющийся полиморфным
 class Base
 {
 public:
     Base(const string& details) : details_{details}
     {}
+
+    /// Дейструктор полиморфного класса всегда должен быть
+    /// объявлен виртуальным (эмпирическое правило, не требования самого C++)
+    virtual ~Base() = default;
 
     string details() const
     { return details_; }
@@ -21,6 +22,7 @@ public:
     void set_details(const string& new_details)
     { details_ = new_details; }
 
+    /// виртуальный метод
     virtual string about() const
     {
         return "[Base] with details: " + details_;
@@ -30,9 +32,11 @@ private:
     string details_;
 };
 
+/// Абстрактный или чисто виртуальный (pure-virtual) тип
 class VBase
 {
 public:
+    /// Абстрактный метод
     virtual string about_me() const = 0;
 };
 
@@ -41,6 +45,7 @@ void print_about(const VBase& vb)
     cout << vb.about_me() << endl;
 }
 
+/// Производный класс: допустимо и множественное наследование
 class Derived : public Base, public VBase
 {
 public:
@@ -48,6 +53,7 @@ public:
         Base{details}, description_{description}
     {}
 
+    /// Переопределённый виртуальный метод базового класса
     string about() const override
     {
         return Base::about() + "\n[Derived] with description: "
@@ -59,6 +65,7 @@ public:
         return "me + " + about();
     }
 
+    /// Пример дружественной функции
     friend ostream& operator<<(ostream& out, const Derived& d_obj);
 
 private:
@@ -75,6 +82,7 @@ ostream& operator<<(ostream& out, const Derived& d_obj)
 class D3 : public Derived
 {
 public:
+    /// Как использовать конструкторы базового класса в производном
     using Derived::Derived;
 
     string about() const override
