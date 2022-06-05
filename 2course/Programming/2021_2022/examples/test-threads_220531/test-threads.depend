@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1654455261 source:/home/posgen/Documents/OmSU/OmsuMaterials/2course/Programming/2021_2022/examples/test-threads_220531/main.cpp
+	<atomic>
+	<chrono>
+	<iostream>
+	<mutex>
+	<string>
+	<thread>
+	<vector>
+	<utility>
+
